@@ -48,7 +48,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, expectedLabelSize.width + 8, expectedLabelSize.height + 8)];
     view.backgroundColor = _backgroundColor;
     
-    UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(4, 4, expectedLabelSize.width, expectedLabelSize.height)];
     
     label.text = _currentStep.tutText;
     label.font = _textFont;
