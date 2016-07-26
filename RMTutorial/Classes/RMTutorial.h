@@ -21,5 +21,6 @@
 -(void)startTutorialInView:(UIView *)view;
 -(void)stepTutorial;
 -(void)showStep:(NSInteger)step;
+-(BOOL)isShowing;
 
 @end

@@ -15,9 +15,13 @@
 
 @property(nonatomic,retain) RMTutorialSequence *currentStep;
 
+@property(nonatomic,retain) DXPopover *currentPopover;
+
 @property(nonatomic,retain) UIView *inView;
 
 @property(nonatomic) NSInteger index;
+
+@property(nonatomic) BOOL isShowing;
 
 @end
 
@@ -35,6 +39,7 @@
         _textFont = [UIFont systemFontOfSize:14.0f];
         
         _continuousTutorial = YES;
+        _isShowing = NO;
     }
     
     return self;
@@ -84,7 +89,11 @@
     
     [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
     
+    _currentPopover = popover;
+    _isShowing = YES;
+    
     popover.didDismissHandler = ^{
+        _isShowing = NO;
         if (_continuousTutorial) {
             [self stepSequence];
         }
@@ -110,7 +119,12 @@
         popover.backgroundColor = _backgroundColor;
     
     [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
+    
+    _currentPopover = popover;
+    _isShowing = YES;
+    
     popover.didDismissHandler = ^{
+        _isShowing = NO;
         if (_continuousTutorial) {
             [self stepSequence];
         }
@@ -125,6 +139,10 @@
 -(void)showStep:(NSInteger)step {
     _index = step--;
     [self stepSequence];
+}
+
+-(BOOL)isShowing {
+    return _isShowing;
 }
 
 @end
