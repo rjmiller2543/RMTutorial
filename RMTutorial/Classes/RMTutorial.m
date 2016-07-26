@@ -139,8 +139,9 @@
 }
 
 -(void)showStep:(NSInteger)step {
-    _index = step--;
+    
     if (!self.isShowing) {
+        _index = step-1;
         [self stepSequence];
     }
 }
