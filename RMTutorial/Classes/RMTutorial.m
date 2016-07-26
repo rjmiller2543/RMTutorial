@@ -122,4 +122,9 @@
     [self stepSequence];
 }
 
+-(void)showStep:(NSInteger)step {
+    _index = step--;
+    [self stepSequence];
+}
+
 @end

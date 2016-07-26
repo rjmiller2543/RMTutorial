@@ -20,5 +20,6 @@
 -(instancetype)initWithArray:(NSArray<RMTutorialSequence*>*)sequence;
 -(void)startTutorialInView:(UIView *)view;
 -(void)stepTutorial;
+-(void)showStep:(NSInteger)step;
 
 @end
