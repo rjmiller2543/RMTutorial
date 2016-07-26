@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,8 +17,46 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0I3-hE-J4m">
+                                <rect key="frame" x="285" y="60" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="First">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYj-pJ-yHQ">
+                                <rect key="frame" x="49" y="360" width="52" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Second">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k3-Cq-0kJ">
+                                <rect key="frame" x="266" y="285" width="68" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Next Step">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextStep:" destination="whP-gf-Uak" eventType="touchUpInside" id="yWa-Pn-xed"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qYj-pJ-yHQ" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" multiplier="1.25" id="Bd7-y0-Eyq"/>
+                            <constraint firstItem="0I3-hE-J4m" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="HXr-Zs-566"/>
+                            <constraint firstItem="qYj-pJ-yHQ" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" multiplier="0.25" id="JPW-gj-gVN"/>
+                            <constraint firstItem="1k3-Cq-0kJ" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="ZJG-We-fwT"/>
+                            <constraint firstItem="0I3-hE-J4m" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" multiplier="0.25" id="mYr-ZW-hda"/>
+                            <constraint firstItem="1k3-Cq-0kJ" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="sFX-Nl-bEe"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="first" destination="0I3-hE-J4m" id="JTW-nW-8Hz"/>
+                        <outlet property="second" destination="qYj-pJ-yHQ" id="Pzq-5y-Hff"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

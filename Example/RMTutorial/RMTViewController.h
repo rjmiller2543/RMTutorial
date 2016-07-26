@@ -10,4 +10,9 @@
 
 @interface RMTViewController : UIViewController
 
+@property(nonatomic,retain) IBOutlet UIButton *first;
+@property(nonatomic,retain) IBOutlet UIButton *second;
+
+-(IBAction)nextStep:(id)sender;
+
 @end
