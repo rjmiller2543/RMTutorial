@@ -1,0 +1,17 @@
+PODS:
+  - DXPopover (0.1.1)
+  - RMTutorial (0.1.0):
+    - DXPopover
+
+DEPENDENCIES:
+  - RMTutorial (from `../`)
+
+EXTERNAL SOURCES:
+  RMTutorial:
+    :path: ../
+
+SPEC CHECKSUMS:
+  DXPopover: 13e6bbd1a0da4e62b2190de51f43a94850769e0f
+  RMTutorial: a5c0cd201d4140a3d069f6886515b3e4fcc22f3c
+
+COCOAPODS: 0.39.0
