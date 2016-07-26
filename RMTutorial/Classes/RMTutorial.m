@@ -133,12 +133,16 @@
 }
 
 -(void)stepTutorial {
-    [self stepSequence];
+    if (!self.isShowing) {
+        [self stepSequence];
+    }
 }
 
 -(void)showStep:(NSInteger)step {
     _index = step--;
-    [self stepSequence];
+    if (!self.isShowing) {
+        [self stepSequence];
+    }
 }
 
 -(BOOL)isShowing {
