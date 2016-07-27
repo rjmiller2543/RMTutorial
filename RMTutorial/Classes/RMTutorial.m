@@ -48,7 +48,7 @@
 
 -(UIView*)popoverView {
     
-    CGSize expectedLabelSize = [_currentStep.tutText sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, expectedLabelSize.width + 8, expectedLabelSize.height + 8)];
     view.backgroundColor = _backgroundColor;
