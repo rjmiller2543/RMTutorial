@@ -49,14 +49,29 @@
 
 -(UIView*)popoverView {
     
-    CGSize expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize expectedLabelSize;
+    if (_currentStep.attributed) {
+        
+        [_currentStep.tutAttText addAttribute:NSFontAttributeName value:_textFont range:NSMakeRange(0, [_currentStep.tutAttText length])];
+        
+        CGRect frame = [_currentStep.tutAttText boundingRectWithSize:MAX_SIZE options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSLineBreakByWordWrapping context:nil];
+        expectedLabelSize = frame.size;
+    }
+    else {
+        expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+    }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, expectedLabelSize.width + 8, expectedLabelSize.height + 8)];
     view.backgroundColor = _backgroundColor;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(4, 4, expectedLabelSize.width, expectedLabelSize.height)];
     
-    label.text = _currentStep.tutText;
+    if (_currentStep.attributed) {
+        label.attributedText = _currentStep.tutAttText;
+    }
+    else
+        label.text = _currentStep.tutText;
+    
     label.font = _textFont;
     label.textColor = _textColor;
     label.numberOfLines = 0;

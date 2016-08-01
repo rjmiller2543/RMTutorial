@@ -22,11 +22,27 @@
         _tutText = text;
         _popPoint = point;
         _direction = direction;
+        
+        _attributed = false;
     }
     
     return self;
     
 }
 
+-(instancetype)initWithPoint:(CGPoint)point andAttributedText:(NSAttributedString *)text andDirection:(RMTPopoverDirection)direction {
+    
+    self = [super init];
+    if (self) {
+        _tutAttText = text;
+        _popPoint = point;
+        _direction = direction;
+        
+        _attributed = true;
+    }
+    
+    return self;
+    
+}
 
 @end
