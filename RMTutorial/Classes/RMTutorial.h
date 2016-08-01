@@ -14,6 +14,7 @@
 @property(nonatomic,retain) UIColor *backgroundColor;
 @property(nonatomic,retain) UIColor *textColor;
 @property(nonatomic,retain) UIFont *textFont;
+@property(nonatomic,retain) UIColor *buttonColor;
 
 @property(nonatomic) BOOL continuousTutorial;
 

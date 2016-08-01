@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## DXPopover
+## DXPopoverKnockdownFork
 
 Copyright (c) 2015 逸言 <kaiwei.xkw@alibaba-inc.com>
 

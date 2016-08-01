@@ -7,7 +7,7 @@
 //
 
 #import "RMTutorial.h"
-#import <DXPopover/DXPopover.h>
+#import <DXPopoverKnockdownFork/DXPopover.h>
 
 @interface RMTutorial ()
 
@@ -37,6 +37,7 @@
         _backgroundColor = [UIColor lightGrayColor];
         _textColor = [UIColor whiteColor];
         _textFont = [UIFont systemFontOfSize:14.0f];
+        _buttonColor = [UIColor darkGrayColor];
         
         _continuousTutorial = YES;
         _isShowing = NO;
@@ -64,8 +65,31 @@
     
     [view addSubview:label];
     
+    if (_currentPopover.popoverPosition == RMTPopoverDirectionNone) {
+        CGRect frame = view.frame;
+        frame.size.height += 20;
+        [view setFrame:frame];
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(label.frame.origin.x, label.frame.origin.x + label.frame.size.height + 4, label.frame.size.width, 16)];
+        [button setTitle:@"Got it" forState:UIControlStateNormal];
+        button.titleLabel.font = _textFont;
+        [button setTitleColor:_textColor forState:UIControlStateNormal];
+        [button setBackgroundColor:_buttonColor];
+        
+        button.layer.cornerRadius = 4;
+        
+        [button addTarget:self action:@selector(dismissTut) forControlEvents:UIControlEventTouchUpInside];
+        
+        [view addSubview:button];
+    }
+    
+    
     return view;
     
+}
+
+-(void)dismissTut {
+    [_currentPopover dismiss];
 }
 
 -(void)startTutorialInView:(UIView *)view {
@@ -84,8 +108,10 @@
         popover.backgroundColor = [UIColor clearColor];
         _currentStep.direction = RMTPopoverDirectionUp;
     }
-    else
+    else {
         popover.backgroundColor = _backgroundColor;
+        popover.animationBounce = YES;
+    }
     
     [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
     
@@ -115,8 +141,10 @@
         popover.backgroundColor = [UIColor clearColor];
         _currentStep.direction = RMTPopoverDirectionUp;
     }
-    else
+    else {
         popover.backgroundColor = _backgroundColor;
+        popover.animationBounce = YES;
+    }
     
     [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
     
