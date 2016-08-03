@@ -1,6 +1,6 @@
 PODS:
-  - DXPopoverKnockdownFork (0.1.2)
-  - RMTutorial (0.1.8):
+  - DXPopoverKnockdownFork (0.1.3)
+  - RMTutorial (0.1.9):
     - DXPopoverKnockdownFork
 
 DEPENDENCIES:
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  DXPopoverKnockdownFork: 40793fdb367d524a11de227590e3f56d1372899f
-  RMTutorial: 0f77c759fb0649449aa3352bc2fd73ad0f84bf1c
+  DXPopoverKnockdownFork: 8770b6567747ce7279c8a1d9150732d96a23769e
+  RMTutorial: a87f6547ed85529191898abc70b4360ac1382ca6
 
 COCOAPODS: 0.39.0

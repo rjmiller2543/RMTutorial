@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7F4D39E46AA64BA27239DB4E'
+               BlueprintIdentifier = '4CF567B8AB64E5241B889D13'
                BlueprintName = 'RMTutorial'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRMTutorial.a'>

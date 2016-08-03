@@ -80,31 +80,41 @@
     
     [view addSubview:label];
     
-    if (_currentPopover.popoverPosition == RMTPopoverDirectionNone) {
-        CGRect frame = view.frame;
-        frame.size.height += 20;
-        [view setFrame:frame];
-        
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(label.frame.origin.x, label.frame.origin.x + label.frame.size.height + 4, label.frame.size.width, 16)];
-        [button setTitle:@"Got it" forState:UIControlStateNormal];
-        button.titleLabel.font = _textFont;
-        [button setTitleColor:_textColor forState:UIControlStateNormal];
-        [button setBackgroundColor:_buttonColor];
-        
-        button.layer.cornerRadius = 4;
-        
-        [button addTarget:self action:@selector(dismissTut) forControlEvents:UIControlEventTouchUpInside];
-        
-        [view addSubview:button];
-    }
-    
-    
     return view;
     
 }
 
 -(void)dismissTut {
     [_currentPopover dismiss];
+}
+
+-(void)setupPopover {
+    
+    DXPopover *popover = [DXPopover popover];
+    
+    if (_currentStep.direction == RMTPopoverDirectionNone) {
+        popover.backgroundColor = [UIColor clearColor];
+        _currentStep.direction = RMTPopoverDirectionUp;
+    }
+    else {
+        popover.backgroundColor = _backgroundColor;
+        popover.animationBounce = YES;
+    }
+    
+    popover.useDoneButton = YES;
+    
+    [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
+    
+    _currentPopover = popover;
+    _isShowing = YES;
+    
+    popover.didDismissHandler = ^{
+        _isShowing = NO;
+        if (_continuousTutorial) {
+            [self stepSequence];
+        }
+    };
+    
 }
 
 -(void)startTutorialInView:(UIView *)view {
@@ -117,28 +127,7 @@
     }
     _currentStep = [_tutorialSequence objectAtIndex:_index];
     
-    DXPopover *popover = [DXPopover popover];
-    
-    if (_currentStep.direction == RMTPopoverDirectionNone) {
-        popover.backgroundColor = [UIColor clearColor];
-        _currentStep.direction = RMTPopoverDirectionUp;
-    }
-    else {
-        popover.backgroundColor = _backgroundColor;
-        popover.animationBounce = YES;
-    }
-    
-    [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
-    
-    _currentPopover = popover;
-    _isShowing = YES;
-    
-    popover.didDismissHandler = ^{
-        _isShowing = NO;
-        if (_continuousTutorial) {
-            [self stepSequence];
-        }
-    };
+    [self setupPopover];
     
 }
 
@@ -150,28 +139,7 @@
     }
     _currentStep = [_tutorialSequence objectAtIndex:_index];
     
-    DXPopover *popover = [DXPopover popover];
-    
-    if (_currentStep.direction == RMTPopoverDirectionNone) {
-        popover.backgroundColor = [UIColor clearColor];
-        _currentStep.direction = RMTPopoverDirectionUp;
-    }
-    else {
-        popover.backgroundColor = _backgroundColor;
-        popover.animationBounce = YES;
-    }
-    
-    [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
-    
-    _currentPopover = popover;
-    _isShowing = YES;
-    
-    popover.didDismissHandler = ^{
-        _isShowing = NO;
-        if (_continuousTutorial) {
-            [self stepSequence];
-        }
-    };
+    [self setupPopover];
     
 }
 
