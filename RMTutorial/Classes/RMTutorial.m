@@ -102,6 +102,9 @@
     }
     
     popover.useDoneButton = YES;
+    popover.buttonColor = _buttonColor;
+    popover.textFont = _textFont;
+    popover.textColor = _textColor;
     
     [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
     
