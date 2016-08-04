@@ -56,9 +56,14 @@
         
         CGRect frame = [_currentStep.tutAttText boundingRectWithSize:MAX_SIZE options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSLineBreakByWordWrapping context:nil];
         expectedLabelSize = frame.size;
+        
     }
     else {
-        expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+        
+        expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:MAX_SIZE
+                                                 lineBreakMode:NSLineBreakByWordWrapping];
+        
+        
     }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, expectedLabelSize.width + 8, expectedLabelSize.height + 8)];
@@ -80,6 +85,26 @@
     
     [view addSubview:label];
     
+    if (_currentStep.direction == RMTPopoverDirectionNone) {
+        
+        CGRect frame = view.frame;
+        frame.size.height += 28;
+        
+        [view setFrame:frame];
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(4, label.frame.origin.y + label.frame.size.height + 4, view.frame.size.width - 8, 20)];
+        
+        button.backgroundColor = _buttonColor;
+        button.titleLabel.font = _textFont;
+        [button setTitleColor:_textColor forState:UIControlStateNormal];
+        [button setTitle:@"Got it" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(dismissTut) forControlEvents:UIControlEventTouchUpInside];
+        button.layer.cornerRadius = 4;
+        
+        [view addSubview:button];
+        
+    }
+    
     return view;
     
 }
@@ -92,6 +117,8 @@
     
     DXPopover *popover = [DXPopover popover];
     
+    UIView *contentView = [self popoverView];
+    
     if (_currentStep.direction == RMTPopoverDirectionNone) {
         popover.backgroundColor = [UIColor clearColor];
         _currentStep.direction = RMTPopoverDirectionUp;
@@ -101,12 +128,13 @@
         popover.animationBounce = YES;
     }
     
-    popover.useDoneButton = YES;
+    popover.useDoneButton = NO;
     popover.buttonColor = _buttonColor;
     popover.textFont = _textFont;
     popover.textColor = _textColor;
     
-    [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:[self popoverView] inView:_inView];
+    [popover showAtPoint:_currentStep.popPoint popoverPostion:_currentStep.direction withContentView:contentView
+                  inView:_inView];
     
     _currentPopover = popover;
     _isShowing = YES;
