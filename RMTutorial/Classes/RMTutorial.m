@@ -41,6 +41,13 @@
         
         _continuousTutorial = YES;
         _isShowing = NO;
+        
+        _animated = YES;
+        _hasButton = NO;
+        
+        _buttonCallback = nil;
+        
+        _buttonText = @"Got it";
     }
     
     return self;
@@ -85,7 +92,7 @@
     
     [view addSubview:label];
     
-    if (_currentStep.direction == RMTPopoverDirectionNone) {
+    if (_currentStep.direction == RMTPopoverDirectionNone || _hasButton) {
         
         CGRect frame = view.frame;
         frame.size.height += 28;
@@ -97,7 +104,7 @@
         button.backgroundColor = _buttonColor;
         button.titleLabel.font = _textFont;
         [button setTitleColor:_textColor forState:UIControlStateNormal];
-        [button setTitle:@"Got it" forState:UIControlStateNormal];
+        [button setTitle:_buttonText forState:UIControlStateNormal];
         [button addTarget:self action:@selector(dismissTut) forControlEvents:UIControlEventTouchUpInside];
         button.layer.cornerRadius = 4;
         
@@ -110,6 +117,9 @@
 }
 
 -(void)dismissTut {
+    if (_buttonCallback != nil) {
+        _buttonCallback(YES);
+    }
     [_currentPopover dismiss];
 }
 
@@ -125,7 +135,9 @@
     }
     else {
         popover.backgroundColor = _backgroundColor;
-        popover.animationBounce = YES;
+        if (_animated) {
+            popover.animationBounce = YES;
+        }
     }
     
     popover.useDoneButton = NO;
