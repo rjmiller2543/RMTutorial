@@ -10,6 +10,7 @@
 #import "RMTutorialSequence.h"
 
 typedef void(^ButtonCallback)(BOOL done);
+typedef void(^CompletionCallback)(BOOL done);
 
 @interface RMTutorial : NSObject
 
@@ -29,6 +30,9 @@ typedef void(^ButtonCallback)(BOOL done);
 
 //Default is nil
 @property(nonatomic) ButtonCallback buttonCallback;
+
+//Default is nil
+@property(nonatomic) CompletionCallback completionCallback;
 
 -(instancetype)initWithArray:(NSArray<RMTutorialSequence*>*)sequence;
 -(void)startTutorialInView:(UIView *)view;

@@ -46,6 +46,7 @@
         _hasButton = NO;
         
         _buttonCallback = nil;
+        _completionCallback = nil;
         
         _buttonText = @"Got it";
     }
@@ -155,6 +156,12 @@
         _isShowing = NO;
         if (_continuousTutorial) {
             [self stepSequence];
+        }
+        if (_index >= _tutorialSequence.count) {
+            _completionCallback(YES);
+        }
+        else {
+            _completionCallback(NO);
         }
     };
     
