@@ -157,11 +157,13 @@
         if (_continuousTutorial) {
             [self stepSequence];
         }
-        if (_index >= _tutorialSequence.count) {
-            _completionCallback(YES);
-        }
-        else {
-            _completionCallback(NO);
+        if (_completionCallback != nil) {
+            if (_index >= _tutorialSequence.count) {
+                _completionCallback(YES);
+            }
+            else {
+                _completionCallback(NO);
+            }
         }
     };
     
