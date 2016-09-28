@@ -60,8 +60,6 @@
     CGSize expectedLabelSize;
     if (_currentStep.attributed) {
         
-        [_currentStep.tutAttText addAttribute:NSFontAttributeName value:_textFont range:NSMakeRange(0, [_currentStep.tutAttText length])];
-        
         CGRect frame = [_currentStep.tutAttText boundingRectWithSize:MAX_SIZE options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSLineBreakByWordWrapping context:nil];
         expectedLabelSize = frame.size;
         
@@ -79,17 +77,17 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(4, 4, expectedLabelSize.width, expectedLabelSize.height)];
     
-    if (_currentStep.attributed) {
-        label.attributedText = _currentStep.tutAttText;
-    }
-    else
-        label.text = _currentStep.tutText;
-    
     label.font = _textFont;
     label.textColor = _textColor;
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.textAlignment = NSTextAlignmentCenter;
+    
+    if (_currentStep.attributed) {
+        label.attributedText = _currentStep.tutAttText;
+    }
+    else
+        label.text = _currentStep.tutText;
     
     [view addSubview:label];
     
