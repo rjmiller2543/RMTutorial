@@ -57,16 +57,18 @@
 
 -(UIView*)popoverView {
     
+    CGSize maxSize = CGSizeMake(90 * _inView.frame.size.width / 100, 2 * _inView.frame.size.height / 3);
+    
     CGSize expectedLabelSize;
     if (_currentStep.attributed) {
         
-        CGRect frame = [_currentStep.tutAttText boundingRectWithSize:MAX_SIZE options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSLineBreakByWordWrapping context:nil];
+        CGRect frame = [_currentStep.tutAttText boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSLineBreakByWordWrapping context:nil];
         expectedLabelSize = frame.size;
         
     }
     else {
         
-        expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:MAX_SIZE
+        expectedLabelSize = [_currentStep.tutText sizeWithFont:_textFont constrainedToSize:maxSize
                                                  lineBreakMode:NSLineBreakByWordWrapping];
         
         
