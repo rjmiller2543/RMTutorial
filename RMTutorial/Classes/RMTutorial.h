@@ -10,7 +10,7 @@
 #import "RMTutorialSequence.h"
 
 typedef void(^ButtonCallback)(BOOL done);
-typedef void(^CompletionCallback)(BOOL done);
+typedef void(^CompletionCallback)(BOOL done, CGPoint dismissedPoint);
 
 @interface RMTutorial : NSObject
 
