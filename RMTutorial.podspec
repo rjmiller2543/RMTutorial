@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RMTutorial'
-  s.version          = '0.3.6'
+  s.version          = '0.3.7'
   s.summary          = 'Popover Turorial Sequence'
 
 # This description is used to generate tags and improve search results.

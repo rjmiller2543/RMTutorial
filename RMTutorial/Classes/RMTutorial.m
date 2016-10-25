@@ -152,17 +152,17 @@
     _currentPopover = popover;
     _isShowing = YES;
     
-    popover.didDismissHandler = ^(CGPoint dismissedPoint){
+    popover.didDismissHandler = ^(CGPoint dismissedPoint, UIEvent *dismissedEvent){
         _isShowing = NO;
         if (_continuousTutorial) {
             [self stepSequence];
         }
-        if (_completionCallback != nil) {
+        if (_completionCallback != nil && _buttonCallback == nil) {
             if (_index >= _tutorialSequence.count) {
-                _completionCallback(YES, dismissedPoint);
+                _completionCallback(YES, dismissedPoint, dismissedEvent);
             }
             else {
-                _completionCallback(NO, dismissedPoint);
+                _completionCallback(NO, dismissedPoint, dismissedEvent);
             }
         }
     };
